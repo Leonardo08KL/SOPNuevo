@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="280.0" prefWidth="400.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonuevo.PrincipalController">
+    <children>
+        <Label layoutX="26.0" layoutY="80.0" text="¿Cual orden de ontrada quieres?">
+            <font>
+                <Font size="24.0" />
+            </font></Label>
+        <Button layoutX="79.0" layoutY="151.0" mnemonicParsing="false" onAction="#FiFo" prefHeight="40.0" prefWidth="100.0" text="Sin Cubrebocas" textAlignment="CENTER" />
+        <Button layoutX="198.0" layoutY="151.0" mnemonicParsing="false" onAction="#Cubrebocas" prefHeight="40.0" prefWidth="120.0" text="Con Cubrebocas" />
+    </children>
+</AnchorPane>

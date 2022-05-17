@@ -1,0 +1,30 @@
+.root{
+    -fx-background-color: #a9cce3  ;
+}
+
+.button {
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 20px;
+    -fx-font-weight: bold;
+}
+
+.label{
+    -fx-font-weight: bold;
+}
+
+.text-field{
+    -fx-background-radius: 10 10 10 10;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
+.combo-box {
+    -fx-background-color: #ff4040;
+    -fx-background-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
+.split-pane{
+    -fx-background-color: #a9cce3  ;
+}
