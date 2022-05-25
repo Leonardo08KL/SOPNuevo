@@ -1,5 +1,7 @@
 package com.example.proyectonuevo;
 
+import com.example.proyectonuevo.Registros.Conexion;
+import com.example.proyectonuevo.Registros.Registro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +14,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
 public class PrincipalController implements Initializable {
+    private Conexion conexion;
     @FXML
     public void FiFo(ActionEvent event) throws IOException {
         Parent Root = FXMLLoader.load(getClass().getResource("/com/example/proyectonuevo/FIFO.fxml"));
@@ -24,6 +30,7 @@ public class PrincipalController implements Initializable {
         Stage.show();
         ( (Node) (event.getSource() ) ).getScene().getWindow().hide();
     }
+
     @FXML
     void Cubrebocas(ActionEvent event) throws IOException {
         Parent Root = FXMLLoader.load(getClass().getResource("/com/example/proyectonuevo/Cubrebocas.fxml"));

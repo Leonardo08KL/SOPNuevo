@@ -2,6 +2,7 @@ package com.example.proyectonuevo.Tablas;
 
 import com.example.proyectonuevo.HelloApplication;
 import com.example.proyectonuevo.Registros.Conexion;
+import com.example.proyectonuevo.Registros.Registro;
 import com.example.proyectonuevo.Registros.Registro2;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,10 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -35,19 +33,19 @@ public class CubreBocasController implements Initializable {
     @FXML
     private TableColumn<Registro2, Number> clmNo;
     @FXML
-    private TableColumn<Registro2, String> clmTLlegada;
+    private TableColumn<Registro2, Double> clmTLlegada;
     @FXML
-    private TableColumn<Registro2, String> clmTAtencion;
+    private TableColumn<Registro2, Double> clmTAtencion;
     @FXML
     private TableColumn<Registro2, String> clmSiNo;
     @FXML
-    private TableColumn<Registro2, String> clmTEntrada;
+    private TableColumn<Registro2, Double> clmTEntrada;
     @FXML
-    private TableColumn<Registro2, String> clmTSalida;
+    private TableColumn<Registro2, Double> clmTSalida;
     @FXML
-    private TableColumn<Registro2, String> clmTEspera;
+    private TableColumn<Registro2, Double> clmTEspera;
     @FXML
-    private TableColumn<Registro2, String> clmTTotal;
+    private TableColumn<Registro2, Double> clmTTotal;
     @FXML
     private TextField txtTiempoLLegada;
     @FXML
@@ -62,7 +60,7 @@ public class CubreBocasController implements Initializable {
     private ObservableList<Registro2> lista;
 
     int No = 0;
-    String Desicion = "";
+    public String Desicion = "";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,64 +92,52 @@ public class CubreBocasController implements Initializable {
                 }
             }
         });
+        refresh();
+    }
 
-        System.out.println(Desicion);
-
+    @FXML
+    public void Insertar(ActionEvent event) throws IOException{
+        No++;
+        System.out.println(txtTiempoLLegada.toString()+" "+txtTiempoAtencion.toString());
+        if(No < 6) {
+            Registro2 a = new Registro2(No,
+                    Desicion,
+                    Double.parseDouble(txtTiempoLLegada.getText()),
+                    Double.parseDouble(txtTiempoAtencion.getText()),
+                    0.0,
+                    0.0, 0.0, 0.0);
+            conexion.establecerConexion();
+            int resultado = a.guardarRegistro(conexion.getConnection());
+            conexion.cerrarConexion();
+        }
+        else {
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("NO MÁS");
+            mensaje.setContentText("NO PUEDES AGREGAR MAS REGISTROS");
+            mensaje.show();
+        }
+        refresh();
+    }
+    public void refresh(){
         conexion = new Conexion();
         conexion.establecerConexion();
 
         //Inicializar listas
         lista = FXCollections.observableArrayList();
-
-        //Llenar listas
         Registro2.llenarInformacion(conexion.getConnection(), lista);
         tblRegistrosCubreBocas.setItems(lista);
 
         //Enlazar columnas con atributos
         clmNo.setCellValueFactory(new PropertyValueFactory<Registro2, Number>("NO"));
         clmSiNo.setCellValueFactory(new PropertyValueFactory<Registro2, String>("cubrebocas"));
-        clmTLlegada.setCellValueFactory(new PropertyValueFactory<Registro2, String>("T_Llegada"));
-        clmTAtencion.setCellValueFactory(new PropertyValueFactory<Registro2, String>("T_Atencion"));
-        clmTEntrada.setCellValueFactory(new PropertyValueFactory<Registro2,String>("T_Entrada"));
-        clmTSalida.setCellValueFactory(new PropertyValueFactory<Registro2,String>("T_Salida"));
-        clmTEspera.setCellValueFactory(new PropertyValueFactory<Registro2,String>("T_Espera"));
-        clmTTotal.setCellValueFactory(new PropertyValueFactory<Registro2,String>("T_Total"));
+        clmTLlegada.setCellValueFactory(new PropertyValueFactory<Registro2, Double>("T_Llegada"));
+        clmTAtencion.setCellValueFactory(new PropertyValueFactory<Registro2, Double>("T_Atencion"));
+        clmTEntrada.setCellValueFactory(new PropertyValueFactory<Registro2,Double>("T_Entrada"));
+        clmTSalida.setCellValueFactory(new PropertyValueFactory<Registro2,Double>("T_Salida"));
+        clmTEspera.setCellValueFactory(new PropertyValueFactory<Registro2,Double>("T_Espera"));
+        clmTTotal.setCellValueFactory(new PropertyValueFactory<Registro2,Double>("T_Total"));
         //gestionarEventos();
         conexion.cerrarConexion();
-    }
-
-    @FXML
-    public void Insertar(ActionEvent event) throws IOException{
-
-        No++;
-        System.out.println(txtTiempoLLegada.toString()+" "+txtTiempoAtencion.toString());
-        //Crear una nueva instancia del tipo Alumno
-        Registro2 a = new Registro2(No,
-                Desicion,
-                txtTiempoLLegada.getText(),
-                txtTiempoAtencion.getText(),
-                " ",
-                " ", " ", " ");
-        //Llamar al metodo guardarRegistro2 de la clase Alumno
-        conexion.establecerConexion();
-        int resultado = a.guardarRegistro(conexion.getConnection());
-        conexion.cerrarConexion();
-/*
-        if (resultado == 1) {
-            lista.add(a);
-            //JDK 8u>40
-            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-            mensaje.setTitle("Registro agregado");
-            mensaje.setContentText("El registro ha sido agregado exitosamente");
-            mensaje.setHeaderText("Resultado:");
-            mensaje.show();
-        } else {
-            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-            mensaje.setTitle("No se Registro");
-            mensaje.setContentText("El registro NO ha sido agregado exitosamente");
-            mensaje.setHeaderText("Resultado:");
-            mensaje.show();
-        }*/
     }
 
 

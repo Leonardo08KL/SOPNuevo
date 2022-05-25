@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonuevo.Animation.CubreBocaAnimation">
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectonuevo.Animation.CubreBocaAnimation">
     <children>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="650.0" prefWidth="1200.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                    <TableView fx:id="tblRegistrosCubreBocas" layoutX="98.0" layoutY="-8.0" prefHeight="327.0" prefWidth="1031.0">
+                    <TableView fx:id="tblRegistrosCubreBocas" layoutX="130.0" layoutY="-3.0" prefHeight="327.0" prefWidth="1031.0">
                         <columns>
                             <TableColumn fx:id="clmNo" prefWidth="46.0" text="No" />
                             <TableColumn fx:id="clmTLlegada" minWidth="50.0" prefWidth="140.0" text="Tiempo llegada" />
                             <TableColumn fx:id="clmTAtencion" prefWidth="140.0" text="Tiempo Atención" />
                             <TableColumn fx:id="clmSiNo" prefWidth="140.0" text="Tiene CubreBocas" />
-                            <TableColumn fx:id="clmTEntrada" minWidth="37.0" prefWidth="140.0" text="Tiempo llegada" />
-                            <TableColumn fx:id="clmTSalida" prefWidth="140.0" text="Tiempo Atención" />
-                            <TableColumn fx:id="clmTEspera" minWidth="50.0" prefWidth="140.0" text="Tiempo llegada" />
-                            <TableColumn fx:id="clmTTotal" prefWidth="140.0" text="Tiempo Atención" />
+                            <TableColumn fx:id="clmTEntrada" minWidth="37.0" prefWidth="140.0" text="Tiempo Entrada" />
+                            <TableColumn fx:id="clmTSalida" prefWidth="140.0" text="Tiempo Salida" />
+                            <TableColumn fx:id="clmTEspera" minWidth="50.0" prefWidth="140.0" text="Tiempo Espera" />
+                            <TableColumn fx:id="clmTTotal" prefWidth="140.0" text="Tiempo Total" />
                         </columns>
                     </TableView>
-                    <Button layoutX="25.0" layoutY="60.0" mnemonicParsing="false" onAction="#regresar" text="Atras" />
+                   <Button layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#Insertar" prefHeight="50.0" prefWidth="100.0" text="Calcular" />
+                   <Button layoutX="25.0" layoutY="60.0" mnemonicParsing="false" onAction="#regresar" text="Atras" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
